@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ngTag">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tag Industries</title>
+    
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/style.css" rel="stylesheet">
+    <link href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+  <div ng-controller="mainCtrl">
+    <div class="row">
+      <p>Industries Selector (Max of 3)</p>
+        <div class="bucket-wrapper">
+          <section ng-repeat="item in bucket | limitTo: 3" class="bucket">
+            {{item.name}} <i class="ion-close-circled remove-icon" ng-click="removeFromBucket(item)"></i>
+          </section>
+        </div>
+    </div>
+
+    <div class="row" ng-show="selectBoxes">
+      <div class="col-md-4 select-box">
+        <section class="link-braces" ng-repeat="parent in parents">
+          <span class="indy-select" ng-click="showChildren(parent)">{{parent.name}} <i class="ion-arrow-right-a indy-select-icon"></i></span>
+        </section>
+      </div>
+
+      <div class="col-md-8 select-box">
+        <section ng-repeat="child in children">
+          {{child.name}} <i class="ion-plus-circled add-icon" ng-click="addToBucket(child)"></i>
+        </section>
+      </div>
+    </div>
+  </div>
+
+
+
+    <!-- jQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+
+    <!-- DATA -->
+    <script src="/scripts/data.js"></script>
+    <!-- Scripts -->
+    <script src="/scripts/app.js"></script>
+    <script src="/scripts/controllers/mainCtrl.js"></script>
+    <script src="/scripts/services/mainService.js"></script>
+
+
+  </body>
+</html>
